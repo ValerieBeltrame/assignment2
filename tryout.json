@@ -1,0 +1,22 @@
+{
+  "people": [
+    {
+          "name": "Zelda",
+          "age": 17,
+          "isPrincess": true,
+          "horse": {
+              "type": "royal",
+              "color": "white"
+          }
+        },
+        {
+          "name": "Link",
+          "age": 18,
+          "isPrincess": false,
+          "horse": {
+              "type": "normal",
+              "color": "brown"
+          }
+        }
+    ]
+}

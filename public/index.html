@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="1014005100945-3dgvn9i2s0f4878t3m694foqoftfjmh2.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>React App</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      function onSignIn(googleUser) {
+        // Useful data for your client-side scripts:
+        var profile = googleUser.getBasicProfile();
+        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+        console.log('Full Name: ' + profile.getName());
+        console.log('Given Name: ' + profile.getGivenName());
+        console.log('Family Name: ' + profile.getFamilyName());
+        console.log("Image URL: " + profile.getImageUrl());
+        console.log("Email: " + profile.getEmail());
+
+        // The ID token you need to pass to your backend:
+        var id_token = googleUser.getAuthResponse().id_token;
+        console.log("ID Token: " + id_token);
+        axios.post('http://localhost:3001/api/login', { id_token: googleUser.getAuthResponse().id_token })
+             .then(function(response){
+               console.log('authenticated successfully');
+             });
+      };
+    </script>
+  </body>
+</html>
